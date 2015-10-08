@@ -28,8 +28,26 @@ int getMax(int a, int b) {
 }
 
 int buyIceCream(int budget, IceCream ic[], int n) {
-    //Implement buyIceCream here
+	
+	int matrix[n+1][budget+1];
 
+	if (n == 0 || budget = 0) {
+		return 0;
+	}
+ 
+   for (int i = 0; i <= n; i++) { //building the matrix
+       for (int j = 0; j <= W; j++) {
+           	if (i==0 || j==0) {
+            	matrix[i][j] = 0; //first row and column are zero
+            } else if (ic[i-1].price <= j) {
+            	matrix[i][j] = getMax(val[i-1] + matrix[i-1][j-ic[i-1].price],  matrix[i-1][j]);
+           	} else {
+            	matrix[i][j] = matrix[i-1][j];
+           	}
+       }
+   }
+   // runtime of this is o(n*budget)
+   return matrix[n][budget];
 }
 
 int main(int argc, char const *argv[]) {
